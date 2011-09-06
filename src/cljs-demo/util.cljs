@@ -72,6 +72,6 @@
   "Set the top-level entry point to the given function."
   [main-name f]
   (let [cl-name (or (get (js->clj (.argv node/process)) 2)
-                    (throw (str "no main name given")))]
+                    (throw "no main name given"))]
   (if (= cl-name main-name)
     (set! *main-cli-fn* #(f (rest %))))))
