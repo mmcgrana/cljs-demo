@@ -58,15 +58,14 @@
 (defn stream-events [{:keys [id req res] :as conn}]
   (log {:fn "stream-events" :conn-id id :event "register"})
   (add-conn id conn)
-  (doseq [ev ["end" "close"]]
-    (.on req ev (fn []
-      (log {:fn "stream-events" :conn-id id :event ev})
-      (remove-conn id))))
   (.on req "data" (fn [line]
     (when line
       (log {:fn "stream-events" :conn-id id :event "data"})
       (let [data (util/json-parse line)]
-        (update-stats data))))))
+        (update-stats data)))))
+  (.on req "close" (fn []
+    (log {:fn "stream-events" :conn-id id :event "close"})
+    (remove-conn id))))
 
 (defn not-found [{:keys [id res]}]
   (log {:fn "not-found" :conn-id id :event "respond"})
