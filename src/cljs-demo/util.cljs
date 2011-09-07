@@ -45,12 +45,6 @@
   [interval-id]
   (js/clearInterval interval-id))
 
-(defn log
-  "Log the given data with a timestamp added."
-  [data]
-  (let [time (. (js/Date.) (getTime))]
-    (prn (merge {:time time} data))))
-
 (defn env
   "Returns the value of the environment variable k,
    or raises if k is missing from the environment."

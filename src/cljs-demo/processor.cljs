@@ -6,7 +6,7 @@
 (def http (node/require "http"))
 
 (defn log [data]
-  (util/log (merge {:ns "cljs-demo.processor"} data)))
+  (prn (merge {:ns "processor"} data)))
 
 (defn rand-id []
   (let [chars (apply vector "abcdefghijklmnopqrstuvwxyz0123456789")

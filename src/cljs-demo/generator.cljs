@@ -5,7 +5,7 @@
 (def http (node/require "http"))
 
 (defn log [data]
-  (util/log (merge {:ns "cljs-demo.generator"} data)))
+  (prn (merge {:ns "generator"} data)))
 
 (defn start [& _]
   (log {:fn "start" :event "request"})
